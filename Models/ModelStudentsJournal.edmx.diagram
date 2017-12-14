@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="e12c432b644c47baaad358cd196ac4e3" Name="Diagram1">
+        <EntityTypeShape EntityType="JournalWebModel.Administrators" Width="1.5" PointX="5.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="JournalWebModel.ClassessType" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JournalWebModel.DeanGroup" Width="1.5" PointX="1.5" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="JournalWebModel.Department" Width="1.5" PointX="1.5" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="JournalWebModel.Direction" Width="1.5" PointX="1.5" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JournalWebModel.GradlesProjects" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="JournalWebModel.GradlesSubjects" Width="1.5" PointX="6" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="JournalWebModel.Leaders" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="JournalWebModel.MembersInProject" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="JournalWebModel.Projects" Width="1.5" PointX="5.25" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="JournalWebModel.Students" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="JournalWebModel.Subjects" Width="1.5" PointX="3" PointY="17.25" IsExpanded="true" />
+        <AssociationConnector Association="JournalWebModel.FK_GRADLES_SUBJECTS" ManuallyRouted="false" />
+        <AssociationConnector Association="JournalWebModel.FK_Relationship_5" ManuallyRouted="false" />
+        <AssociationConnector Association="JournalWebModel.FK_Relationship_6" ManuallyRouted="false" />
+        <AssociationConnector Association="JournalWebModel.FK_Relationship_7" ManuallyRouted="false" />
+        <AssociationConnector Association="JournalWebModel.FK_GRADLE_PROJECT" ManuallyRouted="false" />
+        <AssociationConnector Association="JournalWebModel.FK_GRADLE_PROJECT2" ManuallyRouted="false" />
+        <AssociationConnector Association="JournalWebModel.FK_GRADLE_PROJECT3" ManuallyRouted="false" />
+        <AssociationConnector Association="JournalWebModel.FK_GRADLES_SUBJECTS2" ManuallyRouted="false" />
+        <AssociationConnector Association="JournalWebModel.FK_GRADLES_SUBJECTS3" ManuallyRouted="false" />
+        <AssociationConnector Association="JournalWebModel.FK_MEMBER_IN_PROJECT2" ManuallyRouted="false" />
+        <AssociationConnector Association="JournalWebModel.FK_Relationship_8" ManuallyRouted="false" />
+        <AssociationConnector Association="JournalWebModel.FK_Relationship_9" ManuallyRouted="false" />
+        <AssociationConnector Association="JournalWebModel.FK_MEMBER_IN_PROJECT" ManuallyRouted="false" />
+        <AssociationConnector Association="JournalWebModel.FK_MEMBER_IN_PROJECT3" ManuallyRouted="false" />
+        <AssociationConnector Association="JournalWebModel.FK_Relationship_4" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

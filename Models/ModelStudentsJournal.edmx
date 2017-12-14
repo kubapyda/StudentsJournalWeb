@@ -1,0 +1,934 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="JournalWebModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Administrators">
+          <Key>
+            <PropertyRef Name="admin_ID" />
+          </Key>
+          <Property Name="admin_ID" Type="numeric" Precision="8" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="admin_name" Type="varchar" MaxLength="50" />
+          <Property Name="admin_surname" Type="varchar" MaxLength="50" />
+          <Property Name="admin_login" Type="varchar" MaxLength="35" />
+          <Property Name="admin_password" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ClassessType">
+          <Key>
+            <PropertyRef Name="type_id" />
+          </Key>
+          <Property Name="type_id" Type="numeric" Precision="8" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="type_name" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="DeanGroup">
+          <Key>
+            <PropertyRef Name="group_id" />
+          </Key>
+          <Property Name="group_id" Type="numeric" Precision="8" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="department_id" Type="numeric" Precision="8" Scale="0" />
+          <Property Name="group_name" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="department_id" />
+          </Key>
+          <Property Name="department_id" Type="numeric" Precision="8" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="direction_id" Type="numeric" Precision="8" Scale="0" />
+          <Property Name="department_name" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Direction">
+          <Key>
+            <PropertyRef Name="direction_id" />
+          </Key>
+          <Property Name="direction_id" Type="numeric" Precision="8" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="direction_name" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="GradlesProjects">
+          <Key>
+            <PropertyRef Name="lead_ID" />
+            <PropertyRef Name="student_ID" />
+            <PropertyRef Name="project_ID" />
+          </Key>
+          <Property Name="lead_ID" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="student_ID" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="project_ID" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="gradle_value" Type="varchar" MaxLength="10" />
+          <Property Name="gradle_date" Type="date" />
+        </EntityType>
+        <EntityType Name="GradlesSubjects">
+          <Key>
+            <PropertyRef Name="student_ID" />
+            <PropertyRef Name="lead_ID" />
+            <PropertyRef Name="type_id" />
+          </Key>
+          <Property Name="student_ID" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="lead_ID" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="type_id" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="gradle_subject" Type="varchar" MaxLength="10" />
+          <Property Name="gradle_subject_date" Type="date" />
+        </EntityType>
+        <EntityType Name="Leaders">
+          <Key>
+            <PropertyRef Name="lead_ID" />
+          </Key>
+          <Property Name="lead_ID" Type="numeric" Precision="8" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lead_name" Type="varchar" MaxLength="50" />
+          <Property Name="lead_surname" Type="varchar" MaxLength="50" />
+          <Property Name="lead_degree" Type="varchar" MaxLength="20" />
+          <Property Name="lead_login" Type="varchar" MaxLength="35" />
+          <Property Name="lead_password" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="MembersInProject">
+          <Key>
+            <PropertyRef Name="lead_ID" />
+            <PropertyRef Name="student_ID" />
+            <PropertyRef Name="project_ID" />
+          </Key>
+          <Property Name="lead_ID" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="student_ID" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="project_ID" Type="numeric" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="members_approved" Type="bit" />
+        </EntityType>
+        <EntityType Name="Projects">
+          <Key>
+            <PropertyRef Name="project_ID" />
+          </Key>
+          <Property Name="project_ID" Type="numeric" Precision="8" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="subject_ID" Type="numeric" Precision="8" Scale="0" />
+          <Property Name="lead_ID" Type="numeric" Precision="8" Scale="0" />
+          <Property Name="project_title" Type="varchar" MaxLength="255" />
+          <Property Name="project_students_number" Type="numeric" Precision="8" Scale="0" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="student_ID" />
+          </Key>
+          <Property Name="student_ID" Type="numeric" Precision="8" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="group_id" Type="numeric" Precision="8" Scale="0" />
+          <Property Name="student_name" Type="varchar" MaxLength="50" />
+          <Property Name="student_surname" Type="varchar" MaxLength="50" />
+          <Property Name="student_index_number" Type="varchar" MaxLength="10" />
+          <Property Name="student_login" Type="varchar" MaxLength="35" />
+          <Property Name="student_password" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Subjects">
+          <Key>
+            <PropertyRef Name="subject_ID" />
+          </Key>
+          <Property Name="subject_ID" Type="numeric" Precision="8" Scale="0" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="lead_ID" Type="numeric" Precision="8" Scale="0" />
+          <Property Name="subject_name" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <Association Name="FK_GRADLE_PROJECT">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+          <End Role="GradlesProjects" Type="Self.GradlesProjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="project_ID" />
+            </Principal>
+            <Dependent Role="GradlesProjects">
+              <PropertyRef Name="project_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GRADLE_PROJECT2">
+          <End Role="Leaders" Type="Self.Leaders" Multiplicity="1" />
+          <End Role="GradlesProjects" Type="Self.GradlesProjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leaders">
+              <PropertyRef Name="lead_ID" />
+            </Principal>
+            <Dependent Role="GradlesProjects">
+              <PropertyRef Name="lead_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GRADLE_PROJECT3">
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
+          <End Role="GradlesProjects" Type="Self.GradlesProjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="student_ID" />
+            </Principal>
+            <Dependent Role="GradlesProjects">
+              <PropertyRef Name="student_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GRADLES_SUBJECTS">
+          <End Role="ClassessType" Type="Self.ClassessType" Multiplicity="1" />
+          <End Role="GradlesSubjects" Type="Self.GradlesSubjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClassessType">
+              <PropertyRef Name="type_id" />
+            </Principal>
+            <Dependent Role="GradlesSubjects">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GRADLES_SUBJECTS2">
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
+          <End Role="GradlesSubjects" Type="Self.GradlesSubjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="student_ID" />
+            </Principal>
+            <Dependent Role="GradlesSubjects">
+              <PropertyRef Name="student_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GRADLES_SUBJECTS3">
+          <End Role="Leaders" Type="Self.Leaders" Multiplicity="1" />
+          <End Role="GradlesSubjects" Type="Self.GradlesSubjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leaders">
+              <PropertyRef Name="lead_ID" />
+            </Principal>
+            <Dependent Role="GradlesSubjects">
+              <PropertyRef Name="lead_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEMBER_IN_PROJECT">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+          <End Role="MembersInProject" Type="Self.MembersInProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="project_ID" />
+            </Principal>
+            <Dependent Role="MembersInProject">
+              <PropertyRef Name="project_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEMBER_IN_PROJECT2">
+          <End Role="Leaders" Type="Self.Leaders" Multiplicity="1" />
+          <End Role="MembersInProject" Type="Self.MembersInProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leaders">
+              <PropertyRef Name="lead_ID" />
+            </Principal>
+            <Dependent Role="MembersInProject">
+              <PropertyRef Name="lead_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEMBER_IN_PROJECT3">
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
+          <End Role="MembersInProject" Type="Self.MembersInProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="student_ID" />
+            </Principal>
+            <Dependent Role="MembersInProject">
+              <PropertyRef Name="student_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relationship_4">
+          <End Role="Subjects" Type="Self.Subjects" Multiplicity="0..1" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="subject_ID" />
+            </Principal>
+            <Dependent Role="Projects">
+              <PropertyRef Name="subject_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relationship_5">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="DeanGroup" Type="Self.DeanGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="department_id" />
+            </Principal>
+            <Dependent Role="DeanGroup">
+              <PropertyRef Name="department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relationship_6">
+          <End Role="DeanGroup" Type="Self.DeanGroup" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeanGroup">
+              <PropertyRef Name="group_id" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="group_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relationship_7">
+          <End Role="Direction" Type="Self.Direction" Multiplicity="0..1" />
+          <End Role="Department" Type="Self.Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direction">
+              <PropertyRef Name="direction_id" />
+            </Principal>
+            <Dependent Role="Department">
+              <PropertyRef Name="direction_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relationship_8">
+          <End Role="Leaders" Type="Self.Leaders" Multiplicity="0..1" />
+          <End Role="Subjects" Type="Self.Subjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leaders">
+              <PropertyRef Name="lead_ID" />
+            </Principal>
+            <Dependent Role="Subjects">
+              <PropertyRef Name="lead_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relationship_9">
+          <End Role="Leaders" Type="Self.Leaders" Multiplicity="0..1" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leaders">
+              <PropertyRef Name="lead_ID" />
+            </Principal>
+            <Dependent Role="Projects">
+              <PropertyRef Name="lead_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="JournalWebModelStoreContainer">
+          <EntitySet Name="Administrators" EntityType="Self.Administrators" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClassessType" EntityType="Self.ClassessType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DeanGroup" EntityType="Self.DeanGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Direction" EntityType="Self.Direction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GradlesProjects" EntityType="Self.GradlesProjects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GradlesSubjects" EntityType="Self.GradlesSubjects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Leaders" EntityType="Self.Leaders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MembersInProject" EntityType="Self.MembersInProject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_GRADLE_PROJECT" Association="Self.FK_GRADLE_PROJECT">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="GradlesProjects" EntitySet="GradlesProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GRADLE_PROJECT2" Association="Self.FK_GRADLE_PROJECT2">
+            <End Role="Leaders" EntitySet="Leaders" />
+            <End Role="GradlesProjects" EntitySet="GradlesProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GRADLE_PROJECT3" Association="Self.FK_GRADLE_PROJECT3">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="GradlesProjects" EntitySet="GradlesProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GRADLES_SUBJECTS" Association="Self.FK_GRADLES_SUBJECTS">
+            <End Role="ClassessType" EntitySet="ClassessType" />
+            <End Role="GradlesSubjects" EntitySet="GradlesSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GRADLES_SUBJECTS2" Association="Self.FK_GRADLES_SUBJECTS2">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="GradlesSubjects" EntitySet="GradlesSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GRADLES_SUBJECTS3" Association="Self.FK_GRADLES_SUBJECTS3">
+            <End Role="Leaders" EntitySet="Leaders" />
+            <End Role="GradlesSubjects" EntitySet="GradlesSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEMBER_IN_PROJECT" Association="Self.FK_MEMBER_IN_PROJECT">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="MembersInProject" EntitySet="MembersInProject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEMBER_IN_PROJECT2" Association="Self.FK_MEMBER_IN_PROJECT2">
+            <End Role="Leaders" EntitySet="Leaders" />
+            <End Role="MembersInProject" EntitySet="MembersInProject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEMBER_IN_PROJECT3" Association="Self.FK_MEMBER_IN_PROJECT3">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="MembersInProject" EntitySet="MembersInProject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relationship_4" Association="Self.FK_Relationship_4">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="Projects" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relationship_5" Association="Self.FK_Relationship_5">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="DeanGroup" EntitySet="DeanGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relationship_6" Association="Self.FK_Relationship_6">
+            <End Role="DeanGroup" EntitySet="DeanGroup" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relationship_7" Association="Self.FK_Relationship_7">
+            <End Role="Direction" EntitySet="Direction" />
+            <End Role="Department" EntitySet="Department" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relationship_8" Association="Self.FK_Relationship_8">
+            <End Role="Leaders" EntitySet="Leaders" />
+            <End Role="Subjects" EntitySet="Subjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relationship_9" Association="Self.FK_Relationship_9">
+            <End Role="Leaders" EntitySet="Leaders" />
+            <End Role="Projects" EntitySet="Projects" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="JournalWebModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Administrators">
+          <Key>
+            <PropertyRef Name="admin_ID" />
+          </Key>
+          <Property Name="admin_ID" Type="Decimal" Precision="8" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="admin_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="admin_surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="admin_login" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="admin_password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ClassessType">
+          <Key>
+            <PropertyRef Name="type_id" />
+          </Key>
+          <Property Name="type_id" Type="Decimal" Precision="8" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="type_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GradlesSubjects" Relationship="Self.FK_GRADLES_SUBJECTS" FromRole="ClassessType" ToRole="GradlesSubjects" />
+        </EntityType>
+        <EntityType Name="DeanGroup">
+          <Key>
+            <PropertyRef Name="group_id" />
+          </Key>
+          <Property Name="group_id" Type="Decimal" Precision="8" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="department_id" Type="Decimal" Precision="8" Scale="0" />
+          <Property Name="group_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_Relationship_5" FromRole="DeanGroup" ToRole="Department" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_Relationship_6" FromRole="DeanGroup" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="department_id" />
+          </Key>
+          <Property Name="department_id" Type="Decimal" Precision="8" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="direction_id" Type="Decimal" Precision="8" Scale="0" />
+          <Property Name="department_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DeanGroup" Relationship="Self.FK_Relationship_5" FromRole="Department" ToRole="DeanGroup" />
+          <NavigationProperty Name="Direction" Relationship="Self.FK_Relationship_7" FromRole="Department" ToRole="Direction" />
+        </EntityType>
+        <EntityType Name="Direction">
+          <Key>
+            <PropertyRef Name="direction_id" />
+          </Key>
+          <Property Name="direction_id" Type="Decimal" Precision="8" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="direction_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_Relationship_7" FromRole="Direction" ToRole="Department" />
+        </EntityType>
+        <EntityType Name="GradlesProjects">
+          <Key>
+            <PropertyRef Name="lead_ID" />
+            <PropertyRef Name="student_ID" />
+            <PropertyRef Name="project_ID" />
+          </Key>
+          <Property Name="lead_ID" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="student_ID" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="project_ID" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="gradle_value" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="gradle_date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK_GRADLE_PROJECT" FromRole="GradlesProjects" ToRole="Projects" />
+          <NavigationProperty Name="Leaders" Relationship="Self.FK_GRADLE_PROJECT2" FromRole="GradlesProjects" ToRole="Leaders" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_GRADLE_PROJECT3" FromRole="GradlesProjects" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="GradlesSubjects">
+          <Key>
+            <PropertyRef Name="student_ID" />
+            <PropertyRef Name="lead_ID" />
+            <PropertyRef Name="type_id" />
+          </Key>
+          <Property Name="student_ID" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="lead_ID" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="type_id" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="gradle_subject" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="gradle_subject_date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="ClassessType" Relationship="Self.FK_GRADLES_SUBJECTS" FromRole="GradlesSubjects" ToRole="ClassessType" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_GRADLES_SUBJECTS2" FromRole="GradlesSubjects" ToRole="Students" />
+          <NavigationProperty Name="Leaders" Relationship="Self.FK_GRADLES_SUBJECTS3" FromRole="GradlesSubjects" ToRole="Leaders" />
+        </EntityType>
+        <EntityType Name="Leaders">
+          <Key>
+            <PropertyRef Name="lead_ID" />
+          </Key>
+          <Property Name="lead_ID" Type="Decimal" Precision="8" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lead_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lead_surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="lead_degree" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="lead_login" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="lead_password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GradlesProjects" Relationship="Self.FK_GRADLE_PROJECT2" FromRole="Leaders" ToRole="GradlesProjects" />
+          <NavigationProperty Name="GradlesSubjects" Relationship="Self.FK_GRADLES_SUBJECTS3" FromRole="Leaders" ToRole="GradlesSubjects" />
+          <NavigationProperty Name="MembersInProject" Relationship="Self.FK_MEMBER_IN_PROJECT2" FromRole="Leaders" ToRole="MembersInProject" />
+          <NavigationProperty Name="Subjects" Relationship="Self.FK_Relationship_8" FromRole="Leaders" ToRole="Subjects" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK_Relationship_9" FromRole="Leaders" ToRole="Projects" />
+        </EntityType>
+        <EntityType Name="MembersInProject">
+          <Key>
+            <PropertyRef Name="lead_ID" />
+            <PropertyRef Name="student_ID" />
+            <PropertyRef Name="project_ID" />
+          </Key>
+          <Property Name="lead_ID" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="student_ID" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="project_ID" Type="Decimal" Precision="8" Scale="0" Nullable="false" />
+          <Property Name="members_approved" Type="Boolean" />
+          <NavigationProperty Name="Leaders" Relationship="Self.FK_MEMBER_IN_PROJECT2" FromRole="MembersInProject" ToRole="Leaders" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK_MEMBER_IN_PROJECT" FromRole="MembersInProject" ToRole="Projects" />
+          <NavigationProperty Name="Students" Relationship="Self.FK_MEMBER_IN_PROJECT3" FromRole="MembersInProject" ToRole="Students" />
+        </EntityType>
+        <EntityType Name="Projects">
+          <Key>
+            <PropertyRef Name="project_ID" />
+          </Key>
+          <Property Name="project_ID" Type="Decimal" Precision="8" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="subject_ID" Type="Decimal" Precision="8" Scale="0" />
+          <Property Name="lead_ID" Type="Decimal" Precision="8" Scale="0" />
+          <Property Name="project_title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="project_students_number" Type="Decimal" Precision="8" Scale="0" />
+          <NavigationProperty Name="GradlesProjects" Relationship="Self.FK_GRADLE_PROJECT" FromRole="Projects" ToRole="GradlesProjects" />
+          <NavigationProperty Name="Leaders" Relationship="Self.FK_Relationship_9" FromRole="Projects" ToRole="Leaders" />
+          <NavigationProperty Name="MembersInProject" Relationship="Self.FK_MEMBER_IN_PROJECT" FromRole="Projects" ToRole="MembersInProject" />
+          <NavigationProperty Name="Subjects" Relationship="Self.FK_Relationship_4" FromRole="Projects" ToRole="Subjects" />
+        </EntityType>
+        <EntityType Name="Students">
+          <Key>
+            <PropertyRef Name="student_ID" />
+          </Key>
+          <Property Name="student_ID" Type="Decimal" Precision="8" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="group_id" Type="Decimal" Precision="8" Scale="0" />
+          <Property Name="student_name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="student_surname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="student_index_number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="student_login" Type="String" MaxLength="35" FixedLength="false" Unicode="false" />
+          <Property Name="student_password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="DeanGroup" Relationship="Self.FK_Relationship_6" FromRole="Students" ToRole="DeanGroup" />
+          <NavigationProperty Name="GradlesProjects" Relationship="Self.FK_GRADLE_PROJECT3" FromRole="Students" ToRole="GradlesProjects" />
+          <NavigationProperty Name="GradlesSubjects" Relationship="Self.FK_GRADLES_SUBJECTS2" FromRole="Students" ToRole="GradlesSubjects" />
+          <NavigationProperty Name="MembersInProject" Relationship="Self.FK_MEMBER_IN_PROJECT3" FromRole="Students" ToRole="MembersInProject" />
+        </EntityType>
+        <EntityType Name="Subjects">
+          <Key>
+            <PropertyRef Name="subject_ID" />
+          </Key>
+          <Property Name="subject_ID" Type="Decimal" Precision="8" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="lead_ID" Type="Decimal" Precision="8" Scale="0" />
+          <Property Name="subject_name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Leaders" Relationship="Self.FK_Relationship_8" FromRole="Subjects" ToRole="Leaders" />
+          <NavigationProperty Name="Projects" Relationship="Self.FK_Relationship_4" FromRole="Subjects" ToRole="Projects" />
+        </EntityType>
+        <Association Name="FK_GRADLES_SUBJECTS">
+          <End Role="ClassessType" Type="Self.ClassessType" Multiplicity="1" />
+          <End Role="GradlesSubjects" Type="Self.GradlesSubjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ClassessType">
+              <PropertyRef Name="type_id" />
+            </Principal>
+            <Dependent Role="GradlesSubjects">
+              <PropertyRef Name="type_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relationship_5">
+          <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="DeanGroup" Type="Self.DeanGroup" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="department_id" />
+            </Principal>
+            <Dependent Role="DeanGroup">
+              <PropertyRef Name="department_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relationship_6">
+          <End Role="DeanGroup" Type="Self.DeanGroup" Multiplicity="0..1" />
+          <End Role="Students" Type="Self.Students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DeanGroup">
+              <PropertyRef Name="group_id" />
+            </Principal>
+            <Dependent Role="Students">
+              <PropertyRef Name="group_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relationship_7">
+          <End Role="Direction" Type="Self.Direction" Multiplicity="0..1" />
+          <End Role="Department" Type="Self.Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direction">
+              <PropertyRef Name="direction_id" />
+            </Principal>
+            <Dependent Role="Department">
+              <PropertyRef Name="direction_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GRADLE_PROJECT">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+          <End Role="GradlesProjects" Type="Self.GradlesProjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="project_ID" />
+            </Principal>
+            <Dependent Role="GradlesProjects">
+              <PropertyRef Name="project_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GRADLE_PROJECT2">
+          <End Role="Leaders" Type="Self.Leaders" Multiplicity="1" />
+          <End Role="GradlesProjects" Type="Self.GradlesProjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leaders">
+              <PropertyRef Name="lead_ID" />
+            </Principal>
+            <Dependent Role="GradlesProjects">
+              <PropertyRef Name="lead_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GRADLE_PROJECT3">
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
+          <End Role="GradlesProjects" Type="Self.GradlesProjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="student_ID" />
+            </Principal>
+            <Dependent Role="GradlesProjects">
+              <PropertyRef Name="student_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GRADLES_SUBJECTS2">
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
+          <End Role="GradlesSubjects" Type="Self.GradlesSubjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="student_ID" />
+            </Principal>
+            <Dependent Role="GradlesSubjects">
+              <PropertyRef Name="student_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GRADLES_SUBJECTS3">
+          <End Role="Leaders" Type="Self.Leaders" Multiplicity="1" />
+          <End Role="GradlesSubjects" Type="Self.GradlesSubjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leaders">
+              <PropertyRef Name="lead_ID" />
+            </Principal>
+            <Dependent Role="GradlesSubjects">
+              <PropertyRef Name="lead_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEMBER_IN_PROJECT2">
+          <End Role="Leaders" Type="Self.Leaders" Multiplicity="1" />
+          <End Role="MembersInProject" Type="Self.MembersInProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leaders">
+              <PropertyRef Name="lead_ID" />
+            </Principal>
+            <Dependent Role="MembersInProject">
+              <PropertyRef Name="lead_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relationship_8">
+          <End Role="Leaders" Type="Self.Leaders" Multiplicity="0..1" />
+          <End Role="Subjects" Type="Self.Subjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leaders">
+              <PropertyRef Name="lead_ID" />
+            </Principal>
+            <Dependent Role="Subjects">
+              <PropertyRef Name="lead_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relationship_9">
+          <End Role="Leaders" Type="Self.Leaders" Multiplicity="0..1" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Leaders">
+              <PropertyRef Name="lead_ID" />
+            </Principal>
+            <Dependent Role="Projects">
+              <PropertyRef Name="lead_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEMBER_IN_PROJECT">
+          <End Role="Projects" Type="Self.Projects" Multiplicity="1" />
+          <End Role="MembersInProject" Type="Self.MembersInProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Projects">
+              <PropertyRef Name="project_ID" />
+            </Principal>
+            <Dependent Role="MembersInProject">
+              <PropertyRef Name="project_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MEMBER_IN_PROJECT3">
+          <End Role="Students" Type="Self.Students" Multiplicity="1" />
+          <End Role="MembersInProject" Type="Self.MembersInProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Students">
+              <PropertyRef Name="student_ID" />
+            </Principal>
+            <Dependent Role="MembersInProject">
+              <PropertyRef Name="student_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Relationship_4">
+          <End Role="Subjects" Type="Self.Subjects" Multiplicity="0..1" />
+          <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subjects">
+              <PropertyRef Name="subject_ID" />
+            </Principal>
+            <Dependent Role="Projects">
+              <PropertyRef Name="subject_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="JournalWebEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Administrators" EntityType="Self.Administrators" />
+          <EntitySet Name="ClassessType" EntityType="Self.ClassessType" />
+          <EntitySet Name="DeanGroup" EntityType="Self.DeanGroup" />
+          <EntitySet Name="Department" EntityType="Self.Department" />
+          <EntitySet Name="Direction" EntityType="Self.Direction" />
+          <EntitySet Name="GradlesProjects" EntityType="Self.GradlesProjects" />
+          <EntitySet Name="GradlesSubjects" EntityType="Self.GradlesSubjects" />
+          <EntitySet Name="Leaders" EntityType="Self.Leaders" />
+          <EntitySet Name="MembersInProject" EntityType="Self.MembersInProject" />
+          <EntitySet Name="Projects" EntityType="Self.Projects" />
+          <EntitySet Name="Students" EntityType="Self.Students" />
+          <EntitySet Name="Subjects" EntityType="Self.Subjects" />
+          <AssociationSet Name="FK_GRADLES_SUBJECTS" Association="Self.FK_GRADLES_SUBJECTS">
+            <End Role="ClassessType" EntitySet="ClassessType" />
+            <End Role="GradlesSubjects" EntitySet="GradlesSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relationship_5" Association="Self.FK_Relationship_5">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="DeanGroup" EntitySet="DeanGroup" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relationship_6" Association="Self.FK_Relationship_6">
+            <End Role="DeanGroup" EntitySet="DeanGroup" />
+            <End Role="Students" EntitySet="Students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relationship_7" Association="Self.FK_Relationship_7">
+            <End Role="Direction" EntitySet="Direction" />
+            <End Role="Department" EntitySet="Department" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GRADLE_PROJECT" Association="Self.FK_GRADLE_PROJECT">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="GradlesProjects" EntitySet="GradlesProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GRADLE_PROJECT2" Association="Self.FK_GRADLE_PROJECT2">
+            <End Role="Leaders" EntitySet="Leaders" />
+            <End Role="GradlesProjects" EntitySet="GradlesProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GRADLE_PROJECT3" Association="Self.FK_GRADLE_PROJECT3">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="GradlesProjects" EntitySet="GradlesProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GRADLES_SUBJECTS2" Association="Self.FK_GRADLES_SUBJECTS2">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="GradlesSubjects" EntitySet="GradlesSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GRADLES_SUBJECTS3" Association="Self.FK_GRADLES_SUBJECTS3">
+            <End Role="Leaders" EntitySet="Leaders" />
+            <End Role="GradlesSubjects" EntitySet="GradlesSubjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEMBER_IN_PROJECT2" Association="Self.FK_MEMBER_IN_PROJECT2">
+            <End Role="Leaders" EntitySet="Leaders" />
+            <End Role="MembersInProject" EntitySet="MembersInProject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relationship_8" Association="Self.FK_Relationship_8">
+            <End Role="Leaders" EntitySet="Leaders" />
+            <End Role="Subjects" EntitySet="Subjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relationship_9" Association="Self.FK_Relationship_9">
+            <End Role="Leaders" EntitySet="Leaders" />
+            <End Role="Projects" EntitySet="Projects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEMBER_IN_PROJECT" Association="Self.FK_MEMBER_IN_PROJECT">
+            <End Role="Projects" EntitySet="Projects" />
+            <End Role="MembersInProject" EntitySet="MembersInProject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MEMBER_IN_PROJECT3" Association="Self.FK_MEMBER_IN_PROJECT3">
+            <End Role="Students" EntitySet="Students" />
+            <End Role="MembersInProject" EntitySet="MembersInProject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Relationship_4" Association="Self.FK_Relationship_4">
+            <End Role="Subjects" EntitySet="Subjects" />
+            <End Role="Projects" EntitySet="Projects" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="JournalWebModelStoreContainer" CdmEntityContainer="JournalWebEntities">
+          <EntitySetMapping Name="Administrators">
+            <EntityTypeMapping TypeName="JournalWebModel.Administrators">
+              <MappingFragment StoreEntitySet="Administrators">
+                <ScalarProperty Name="admin_ID" ColumnName="admin_ID" />
+                <ScalarProperty Name="admin_name" ColumnName="admin_name" />
+                <ScalarProperty Name="admin_surname" ColumnName="admin_surname" />
+                <ScalarProperty Name="admin_login" ColumnName="admin_login" />
+                <ScalarProperty Name="admin_password" ColumnName="admin_password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClassessType">
+            <EntityTypeMapping TypeName="JournalWebModel.ClassessType">
+              <MappingFragment StoreEntitySet="ClassessType">
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+                <ScalarProperty Name="type_name" ColumnName="type_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DeanGroup">
+            <EntityTypeMapping TypeName="JournalWebModel.DeanGroup">
+              <MappingFragment StoreEntitySet="DeanGroup">
+                <ScalarProperty Name="group_id" ColumnName="group_id" />
+                <ScalarProperty Name="department_id" ColumnName="department_id" />
+                <ScalarProperty Name="group_name" ColumnName="group_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Department">
+            <EntityTypeMapping TypeName="JournalWebModel.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="department_id" ColumnName="department_id" />
+                <ScalarProperty Name="direction_id" ColumnName="direction_id" />
+                <ScalarProperty Name="department_name" ColumnName="department_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Direction">
+            <EntityTypeMapping TypeName="JournalWebModel.Direction">
+              <MappingFragment StoreEntitySet="Direction">
+                <ScalarProperty Name="direction_id" ColumnName="direction_id" />
+                <ScalarProperty Name="direction_name" ColumnName="direction_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GradlesProjects">
+            <EntityTypeMapping TypeName="JournalWebModel.GradlesProjects">
+              <MappingFragment StoreEntitySet="GradlesProjects">
+                <ScalarProperty Name="lead_ID" ColumnName="lead_ID" />
+                <ScalarProperty Name="student_ID" ColumnName="student_ID" />
+                <ScalarProperty Name="project_ID" ColumnName="project_ID" />
+                <ScalarProperty Name="gradle_value" ColumnName="gradle_value" />
+                <ScalarProperty Name="gradle_date" ColumnName="gradle_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GradlesSubjects">
+            <EntityTypeMapping TypeName="JournalWebModel.GradlesSubjects">
+              <MappingFragment StoreEntitySet="GradlesSubjects">
+                <ScalarProperty Name="student_ID" ColumnName="student_ID" />
+                <ScalarProperty Name="lead_ID" ColumnName="lead_ID" />
+                <ScalarProperty Name="type_id" ColumnName="type_id" />
+                <ScalarProperty Name="gradle_subject" ColumnName="gradle_subject" />
+                <ScalarProperty Name="gradle_subject_date" ColumnName="gradle_subject_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Leaders">
+            <EntityTypeMapping TypeName="JournalWebModel.Leaders">
+              <MappingFragment StoreEntitySet="Leaders">
+                <ScalarProperty Name="lead_ID" ColumnName="lead_ID" />
+                <ScalarProperty Name="lead_name" ColumnName="lead_name" />
+                <ScalarProperty Name="lead_surname" ColumnName="lead_surname" />
+                <ScalarProperty Name="lead_degree" ColumnName="lead_degree" />
+                <ScalarProperty Name="lead_login" ColumnName="lead_login" />
+                <ScalarProperty Name="lead_password" ColumnName="lead_password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MembersInProject">
+            <EntityTypeMapping TypeName="JournalWebModel.MembersInProject">
+              <MappingFragment StoreEntitySet="MembersInProject">
+                <ScalarProperty Name="lead_ID" ColumnName="lead_ID" />
+                <ScalarProperty Name="student_ID" ColumnName="student_ID" />
+                <ScalarProperty Name="project_ID" ColumnName="project_ID" />
+                <ScalarProperty Name="members_approved" ColumnName="members_approved" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="JournalWebModel.Projects">
+              <MappingFragment StoreEntitySet="Projects">
+                <ScalarProperty Name="project_ID" ColumnName="project_ID" />
+                <ScalarProperty Name="subject_ID" ColumnName="subject_ID" />
+                <ScalarProperty Name="lead_ID" ColumnName="lead_ID" />
+                <ScalarProperty Name="project_title" ColumnName="project_title" />
+                <ScalarProperty Name="project_students_number" ColumnName="project_students_number" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="JournalWebModel.Students">
+              <MappingFragment StoreEntitySet="Students">
+                <ScalarProperty Name="student_ID" ColumnName="student_ID" />
+                <ScalarProperty Name="group_id" ColumnName="group_id" />
+                <ScalarProperty Name="student_name" ColumnName="student_name" />
+                <ScalarProperty Name="student_surname" ColumnName="student_surname" />
+                <ScalarProperty Name="student_index_number" ColumnName="student_index_number" />
+                <ScalarProperty Name="student_login" ColumnName="student_login" />
+                <ScalarProperty Name="student_password" ColumnName="student_password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Subjects">
+            <EntityTypeMapping TypeName="JournalWebModel.Subjects">
+              <MappingFragment StoreEntitySet="Subjects">
+                <ScalarProperty Name="subject_ID" ColumnName="subject_ID" />
+                <ScalarProperty Name="lead_ID" ColumnName="lead_ID" />
+                <ScalarProperty Name="subject_name" ColumnName="subject_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

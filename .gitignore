@@ -1,0 +1,15 @@
+bin/
+obj/
+Scripts/
+*.csproj.user
+*.resharper.user
+*.resharper
+*.suo
+*.cache
+*~
+*.swp
+*.resharper.user
+*.rptproj.user
+*.db
+*.sdf
+*.tmp
