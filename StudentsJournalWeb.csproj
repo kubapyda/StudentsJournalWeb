@@ -194,6 +194,7 @@
     <Compile Include="Controllers\DeanGroupsController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\DirectionsController.cs" />
+    <Compile Include="Controllers\LeadersController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
