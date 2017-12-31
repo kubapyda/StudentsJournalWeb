@@ -56,7 +56,14 @@ namespace StudentsJournalWeb.Controllers
                 return BadRequest();
             }
 
-            db.Entry(subjects).State = EntityState.Modified;
+            Subjects sub = new Subjects()
+            {
+                subject_ID = subjects.subject_ID,
+                subject_name = subjects.subject_name,
+                lead_ID = subjects.lead_ID
+            };
+
+            db.Entry(sub).State = EntityState.Modified;
 
             try
             {
