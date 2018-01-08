@@ -37,5 +37,6 @@ namespace StudentsJournalWeb.Models
         public DbSet<Projects> Projects { get; set; }
         public DbSet<Students> Students { get; set; }
         public DbSet<Subjects> Subjects { get; set; }
+        public DbSet<Users> Users { get; set; }
     }
 }

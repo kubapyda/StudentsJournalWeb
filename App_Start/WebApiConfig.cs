@@ -26,9 +26,7 @@ namespace StudentsJournalWeb
             config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             config.Formatters.JsonFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/json"));
 
-            var enableCorsAttribute = new EnableCorsAttribute("*",
-                                               "Origin, Content-Type, Accept",
-                                               "GET, PUT, POST, DELETE, OPTIONS");
+            var enableCorsAttribute = new EnableCorsAttribute("http://localhost:4200", "*", "*");
             config.EnableCors(enableCorsAttribute);
         }
     }

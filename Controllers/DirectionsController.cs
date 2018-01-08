@@ -12,6 +12,7 @@ using StudentsJournalWeb.Models;
 
 namespace StudentsJournalWeb.Controllers
 {
+    [Authorize(Roles = "Administrator")]
     public class DirectionsController : ApiController
     {
         private JournalWebEntities db = new JournalWebEntities();
