@@ -218,8 +218,11 @@
     <Compile Include="Controllers\DeanGroupsController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\DirectionsController.cs" />
+    <Compile Include="Controllers\GradlesProjectsController.cs" />
+    <Compile Include="Controllers\GradlesSubjectsController.cs" />
     <Compile Include="Controllers\LeadersController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MembersInProjectsController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\SelectizeController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />

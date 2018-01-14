@@ -12,12 +12,12 @@ using StudentsJournalWeb.Models;
 
 namespace StudentsJournalWeb.Controllers
 {
-    [Authorize(Roles = "Administrator")]
     public class ProjectsController : ApiController
     {
         private JournalWebEntities db = new JournalWebEntities();
 
         // GET: api/Projects
+        [Authorize(Roles = "Administrator, Leader, User")]
         public IQueryable GetProjects()
         {
             var projects = from d in db.Projects
@@ -26,6 +26,7 @@ namespace StudentsJournalWeb.Controllers
                                id = (int)d.project_ID,
                                title = d.project_title,
                                studentNumber = d.project_students_number,
+                               leadId = d.lead_ID,
                                leader = d.Leaders.lead_name + " " + d.Leaders.lead_surname,
                                subject = d.Subjects.subject_name
                            };
@@ -33,6 +34,7 @@ namespace StudentsJournalWeb.Controllers
         }
 
         // GET: api/Projects/5
+        [Authorize(Roles = "Administrator, Leader")]
         [ResponseType(typeof(Projects))]
         public IHttpActionResult GetProjects(decimal id)
         {
@@ -45,7 +47,29 @@ namespace StudentsJournalWeb.Controllers
             return Ok(projects);
         }
 
+        [Authorize(Roles = "Administrator, Leader")]
+        [ResponseType(typeof(MembersInProject))]
+        public IHttpActionResult GetLeaderStudentProjects(decimal id, string isLeader)
+        {
+            var leadProjects = from d in db.Projects
+                               where d.lead_ID == id
+                               select new
+                               {
+                                   id = d.project_ID,
+                                   name = d.project_title
+                               };
+
+            if (leadProjects == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(leadProjects);
+
+        }
+
         // PUT: api/Projects/5
+        [Authorize(Roles = "Administrator, Leader")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutProjects(decimal id, Projects projects)
         {
@@ -90,6 +114,7 @@ namespace StudentsJournalWeb.Controllers
         }
 
         // POST: api/Projects
+        [Authorize(Roles = "Administrator, Leader")]
         [ResponseType(typeof(Projects))]
         public IHttpActionResult PostProjects(Projects projects)
         {
@@ -105,6 +130,7 @@ namespace StudentsJournalWeb.Controllers
         }
 
         // DELETE: api/Projects/5
+        [Authorize(Roles = "Administrator, Leader")]
         [ResponseType(typeof(Projects))]
         public IHttpActionResult DeleteProjects(decimal id)
         {

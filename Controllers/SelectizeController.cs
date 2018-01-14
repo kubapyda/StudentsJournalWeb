@@ -45,5 +45,23 @@ namespace StudentsJournalWeb.Controllers
 
             return Ok(subject);
         }
+
+        // GET: api/Selectize/5
+        public IHttpActionResult GetStudents(string isStudent)
+        {
+            var students = from d in db.Students
+                          select new
+                          {
+                              id = (int)d.student_ID,
+                              name = d.student_name + " " + d.student_surname
+                          };
+
+            if (students == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(students);
+        }
     }
 }

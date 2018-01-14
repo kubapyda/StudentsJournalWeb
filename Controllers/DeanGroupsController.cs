@@ -12,12 +12,12 @@ using StudentsJournalWeb.Models;
 
 namespace StudentsJournalWeb.Controllers
 {
-    [Authorize(Roles = "Administrator")]
     public class DeanGroupsController : ApiController
     {
         private JournalWebEntities db = new JournalWebEntities();
 
         // GET: api/DeanGroups
+        [Authorize(Roles = "Administrator, Leader")]
         public IQueryable GetDeanGroup()
         {
             var deanGroups = from d in db.DeanGroup
@@ -32,6 +32,7 @@ namespace StudentsJournalWeb.Controllers
         }
 
         // GET: api/DeanGroups/5
+        [Authorize(Roles = "Administrator")]
         [ResponseType(typeof(DeanGroup))]
         public IHttpActionResult GetDeanGroup(decimal id)
         {
@@ -45,6 +46,7 @@ namespace StudentsJournalWeb.Controllers
         }
 
         // PUT: api/DeanGroups/5
+        [Authorize(Roles = "Administrator")]
         [ResponseType(typeof(void))]
         public IHttpActionResult PutDeanGroup(decimal id, DeanGroup deanGroup)
         {
@@ -80,6 +82,7 @@ namespace StudentsJournalWeb.Controllers
         }
 
         // POST: api/DeanGroups
+        [Authorize(Roles = "Administrator")]
         [ResponseType(typeof(DeanGroup))]
         public IHttpActionResult PostDeanGroup(DeanGroup deanGroup)
         {
@@ -95,6 +98,7 @@ namespace StudentsJournalWeb.Controllers
         }
 
         // DELETE: api/DeanGroups/5
+        [Authorize(Roles = "Administrator")]
         [ResponseType(typeof(DeanGroup))]
         public IHttpActionResult DeleteDeanGroup(decimal id)
         {
